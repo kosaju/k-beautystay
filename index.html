@@ -36,9 +36,9 @@ a{color:var(--celadon-deep)}
 /* 머리줄 */
 header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;max-width:980px;margin:0 auto;gap:12px;flex-wrap:wrap}
 .brand{font:700 17px/1 var(--f-display);letter-spacing:.08em;color:var(--celadon-deep);text-decoration:none}
-.langs{display:flex;gap:4px;flex-wrap:wrap}
-.langs button{font:500 13px/1 var(--f-body);color:var(--celadon-deep);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer;min-height:32px}
-.langs button[aria-pressed="true"]{background:var(--celadon-deep);color:#fff;border-color:var(--celadon-deep)}
+.langs{position:relative}
+.langs select{-webkit-appearance:none;appearance:none;font:700 15px/1 var(--f-body);color:var(--ink);background:#fff;border:2px solid var(--bronze);border-radius:999px;padding:10px 40px 10px 18px;min-height:44px;cursor:pointer}
+.langs::after{content:"";position:absolute;right:16px;top:50%;margin-top:-3px;border:6px solid transparent;border-top-color:var(--celadon-deep);border-bottom:0;pointer-events:none}
 
 /* 첫 화면 — 일본어는 세로쓰기 */
 .hero{background:var(--celadon);border-radius:0 0 40px 40px}
@@ -105,12 +105,14 @@ footer .fb{font:700 15px/1 var(--f-display);letter-spacing:.08em;margin-bottom:1
 <body>
 <header>
   <a class="brand" href="/">K-BEAUTY STAY</a>
-  <nav class="langs" aria-label="Language">
-    <button type="button" data-l="ja">日本語</button>
-    <button type="button" data-l="en">English</button>
-    <button type="button" data-l="zh">中文</button>
-    <button type="button" data-l="ko">한국어</button>
-  </nav>
+  <div class="langs">
+    <select id="lang" aria-label="Language / 言語">
+      <option value="ja">日本語</option>
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+      <option value="ko">한국어</option>
+    </select>
+  </div>
 </header>
 
 <main>
@@ -213,11 +215,11 @@ function setLang(l){
   document.documentElement.setAttribute("lang", l==="zh"?"zh":l);
   var d=T[l];
   document.querySelectorAll("[data-t]").forEach(function(el){var k=el.getAttribute("data-t");if(d[k]!=null)el.textContent=d[k];});
-  document.querySelectorAll(".langs button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l));});
+  document.getElementById("lang").value=l;
   document.title="K-BEAUTY STAY｜"+d.h1.replace(/\n/g,"");
   try{localStorage.setItem("kbs-lang",l)}catch(e){}
 }
-document.querySelectorAll(".langs button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-l"))})});
+document.getElementById("lang").addEventListener("change",function(e){setLang(e.target.value)});
 var saved=null;try{saved=localStorage.getItem("kbs-lang")}catch(e){}
 var nav=(navigator.language||"ja").slice(0,2);
 setLang(saved||({ja:"ja",en:"en",zh:"zh",ko:"ko"})[nav]||"ja");
