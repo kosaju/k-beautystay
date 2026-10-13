@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>K-BEAUTY STAY｜釜山・金海でゆっくり滞在</title>
+<meta name="description" content="金海の小さなテーマホテルに泊まり、釜山の街と海へ。K-BEAUTY STAYは釜山・金海の滞在をご案内します。">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFBF9;      /* 백자 흰빛 */
+  --celadon:#DCE8E1;    /* 청자 옅은 빛 */
+  --celadon-deep:#2E4A43;/* 청자 깊은 빛 = 글자 */
+  --ink:#1D2623;
+  --bronze:#9A6B2F;     /* 가야 청동 */
+  --line:#C9D8D0;
+  --muted:#5A6B65;
+  --lock:#7D8783;
+  --f-display:"Shippori Mincho","Noto Serif JP","Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans CJK JP","Hiragino Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper)!important;color:var(--ink);margin:0}
+body{font:16px/1.75 var(--f-body);-webkit-text-size-adjust:100%}
+a{color:var(--celadon-deep)}
+:focus-visible{outline:3px solid var(--bronze);outline-offset:3px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+/* 머리줄 */
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;max-width:980px;margin:0 auto;gap:12px;flex-wrap:wrap}
+.brand{font:700 17px/1 var(--f-display);letter-spacing:.08em;color:var(--celadon-deep);text-decoration:none}
+.langs{display:flex;gap:4px;flex-wrap:wrap}
+.langs button{font:500 13px/1 var(--f-body);color:var(--celadon-deep);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer;min-height:32px}
+.langs button[aria-pressed="true"]{background:var(--celadon-deep);color:#fff;border-color:var(--celadon-deep)}
+
+/* 첫 화면 — 일본어는 세로쓰기 */
+.hero{background:var(--celadon);border-radius:0 0 40px 40px}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;padding-top:40px;padding-bottom:44px;min-height:440px}
+.hero h1{white-space:pre-line;font:700 clamp(30px,6.4vw,52px)/1.35 var(--f-display);color:var(--celadon-deep);margin:0;letter-spacing:.04em}
+html[lang="ja"] .hero h1{writing-mode:vertical-rl;grid-column:2;grid-row:1 / span 2;align-self:start;line-height:1.6;height:9.6em;width:auto;justify-self:end}
+.hero .lead{font-size:16px;color:var(--ink);max-width:30em;margin:0 0 20px}
+.hero .side{grid-column:1;grid-row:1 / span 2;align-self:end}
+html:not([lang="ja"]) .hero .wrap{grid-template-columns:1fr}
+html:not([lang="ja"]) .hero .side{grid-row:auto}
+html:not([lang="ja"]) .hero h1{grid-column:1}
+.btn{display:inline-block;background:var(--celadon-deep);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:13px 22px;min-height:48px}
+.btn:hover{background:#243B35}
+
+/* 안내 띠 */
+.notice{margin:28px auto 0;max-width:940px;border-left:4px solid var(--bronze);background:#fff;padding:14px 18px;font-size:14.5px;color:var(--ink)}
+
+section{padding:44px 20px 8px}
+h2{font:700 24px/1.4 var(--f-display);color:var(--celadon-deep);margin:0 0 18px}
+
+/* 여정 — 실제 순서라 번호 사용 */
+.journey{list-style:none;margin:0;padding:0;counter-reset:step;border-top:1px solid var(--line)}
+.journey li{counter-increment:step;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.journey li::before{content:counter(step);font:700 22px/1 var(--f-display);color:var(--bronze);padding-top:2px}
+.journey b{display:block;font-size:16.5px}
+.journey span{color:var(--muted);font-size:14.5px}
+.journey li.locked{color:var(--lock)}
+.journey li.locked::before{color:var(--lock)}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--lock);border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:2px;color:var(--lock)}
+
+/* 숙소 */
+.stay{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:start}
+.stay .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}
+.stay .name{font:700 21px/1.4 var(--f-display);color:var(--celadon-deep);margin:0 0 6px}
+.stay dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:14px 0 18px;font-size:14.5px}
+.stay dt{color:var(--muted)}
+.stay dd{margin:0}
+.crest{width:100%;max-width:340px;justify-self:center}
+
+/* 의료기관 — 잠김 */
+.clinics{border:1px dashed var(--lock);border-radius:22px;padding:22px;color:var(--lock);background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(125,135,131,.06) 14px 15px)}
+.clinics p{margin:0}
+
+footer{margin-top:56px;background:var(--celadon-deep);color:#E7EFEA;font-size:13px;line-height:1.8}
+footer .wrap{padding-top:28px;padding-bottom:36px}
+footer a{color:#fff}
+footer .fb{font:700 15px/1 var(--f-display);letter-spacing:.08em;margin-bottom:12px;color:#fff}
+
+@media (max-width:680px){
+  .hero{border-radius:0 0 28px 28px}
+  .hero .wrap{min-height:0;padding-top:28px}
+  html[lang="ja"] .hero .wrap{grid-template-columns:1fr auto}
+  html[lang="ja"] .hero h1{font-size:30px}
+  .stay{grid-template-columns:1fr}
+  .crest{max-width:240px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">K-BEAUTY STAY</a>
+  <nav class="langs" aria-label="Language">
+    <button type="button" data-l="ja">日本語</button>
+    <button type="button" data-l="en">English</button>
+    <button type="button" data-l="zh">中文</button>
+    <button type="button" data-l="ko">한국어</button>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1 data-t="h1"></h1>
+      <div class="side">
+        <p class="lead" data-t="lead"></p>
+        <a class="btn" href="https://tourhotel.kr" rel="noopener" data-t="cta"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap"><p class="notice" role="note" data-t="notice"></p></div>
+
+  <section class="wrap" aria-labelledby="j">
+    <h2 id="j" data-t="jTitle"></h2>
+    <ol class="journey">
+      <li><div><b data-t="j1"></b><span data-t="j1s"></span></div></li>
+      <li><div><b data-t="j2"></b><span data-t="j2s"></span></div></li>
+      <li><div><b data-t="j3"></b><span data-t="j3s"></span></div></li>
+      <li class="locked"><div><b><span data-t="j4"></span><span class="tag" data-t="soon"></span></b><span data-t="j4s"></span></div></li>
+    </ol>
+  </section>
+
+  <section class="wrap" aria-labelledby="s">
+    <h2 id="s" data-t="sTitle"></h2>
+    <div class="stay">
+      <div class="card">
+        <p class="name" data-t="hotel"></p>
+        <p style="margin:0" data-t="hotelDesc"></p>
+        <dl>
+          <dt data-t="rooms"></dt><dd data-t="roomsV"></dd>
+          <dt data-t="area"></dt><dd data-t="areaV"></dd>
+          <dt data-t="tel"></dt><dd><a href="tel:+82553299900">+82-55-329-9900</a></dd>
+        </dl>
+        <a class="btn" href="https://tourhotel.kr" rel="noopener" data-t="book"></a>
+      </div>
+      <svg class="crest" viewBox="0 0 300 300" role="img" aria-label="">
+        <!-- 가야 금관 모티프: 출(出)자형 세움장식을 단순화 -->
+        <circle cx="150" cy="150" r="140" fill="none" stroke="#C9D8D0" stroke-width="2"/>
+        <path d="M60 205h180v18H60z" fill="#9A6B2F"/>
+        <g fill="none" stroke="#9A6B2F" stroke-width="10" stroke-linecap="round">
+          <path d="M95 205V120M95 150h-18M95 130h18"/>
+          <path d="M150 205V88M150 125h-22M150 105h22M150 150h22"/>
+          <path d="M205 205V120M205 150h18M205 130h-18"/>
+        </g>
+        <g fill="#2E4A43"><circle cx="95" cy="112" r="9"/><circle cx="150" cy="80" r="10"/><circle cx="205" cy="112" r="9"/></g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="c">
+    <h2 id="c" data-t="cTitle"></h2>
+    <div class="clinics"><p data-t="cBody"></p></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fb">K-BEAUTY STAY</div>
+    <div data-t="biz"></div>
+    <div>376-86-01424</div>
+    <div data-t="addr"></div>
+    <div data-t="reg"></div>
+    <div>Hosting: Cloudflare, Inc.</div>
+  </div>
+</footer>
+
+<script>
+var T={
+ja:{h1:"釜山・金海で、\nゆっくり滞在する。",lead:"金海の小さなテーマホテルに泊まり、釜山の街と海へ。旅のあいだの宿と観光をご案内します。",cta:"宿泊を見る",
+notice:"医療機関のご案内・予約は、外国人患者誘致業者の登録が完了してから開始します。現在は宿泊と観光のみご利用いただけます。",
+jTitle:"旅の流れ",j1:"金海空港に到着",j1s:"釜山の空の玄関口から旅が始まります。",j2:"ホテルにチェックイン",j2s:"金海のテーマホテルでゆっくり休みます。",j3:"釜山の街と海へ",j3s:"海雲台、市場、伽耶の歴史をめぐります。",j4:"クリニックの予約・通訳",j4s:"登録後に、登録済みの医療機関だけをご案内します。",soon:"準備中",
+sTitle:"泊まる",hotel:"伽耶王国テーマホテル",hotelDesc:"古代伽耶の物語をテーマにした金海のホテルです。",rooms:"客室",roomsV:"37室",area:"場所",areaV:"韓国・慶尚南道 金海市",tel:"お問い合わせ",book:"空室を見る",
+cTitle:"提携医療機関",cBody:"登録完了後に公開します。外国人患者誘致医療機関として登録された医療機関のみを、登録番号とあわせて掲載します。",
+biz:"運営：株式会社チャンデハン（주식회사 창대한）／代表 배용준",addr:"韓国 釜山広域市 海雲台区",reg:"外国人患者誘致業者 登録：準備中"},
+en:{h1:"Stay slowly in Busan and Gimhae.",lead:"Sleep at a small themed hotel in Gimhae, then head out to Busan's city and sea. We arrange your stay and sightseeing.",cta:"See the hotel",
+notice:"Clinic information and booking will open after our registration as a foreign patient attraction business is complete. For now, only stays and sightseeing are available.",
+jTitle:"Your trip",j1:"Arrive at Gimhae Airport",j1s:"Your trip starts at Busan's gateway airport.",j2:"Check in to the hotel",j2s:"Rest at a themed hotel in Gimhae.",j3:"Out to Busan's city and sea",j3s:"Haeundae, local markets and the history of Gaya.",j4:"Clinic booking and interpreting",j4s:"After registration, we will introduce registered medical institutions only.",soon:"Coming soon",
+sTitle:"Where you stay",hotel:"Gaya Kingdom Theme Hotel",hotelDesc:"A Gimhae hotel themed on the ancient Gaya kingdom.",rooms:"Rooms",roomsV:"37",area:"Location",areaV:"Gimhae, Gyeongsangnam-do, Korea",tel:"Contact",book:"Check availability",
+cTitle:"Partner clinics",cBody:"Published after registration. Only institutions registered as foreign patient attraction medical institutions will be listed, with their registration numbers.",
+biz:"Operated by Changdaehan Co., Ltd. (주식회사 창대한) · CEO 배용준",addr:"Haeundae-gu, Busan, Korea",reg:"Foreign patient attraction business registration: in preparation"},
+zh:{h1:"在釜山・金海，慢慢住下来。",lead:"住进金海的一家小型主题酒店，再去釜山的城市与大海。我们为您安排住宿与观光。",cta:"查看酒店",
+notice:"医疗机构的介绍与预约，将在我们完成外国患者招揽业者登记后开始。目前仅提供住宿与观光。",
+jTitle:"行程",j1:"抵达金海机场",j1s:"旅程从釜山的空中门户开始。",j2:"入住酒店",j2s:"在金海的主题酒店好好休息。",j3:"前往釜山的城市与大海",j3s:"海云台、传统市场与伽倻的历史。",j4:"诊所预约与翻译",j4s:"登记完成后，仅介绍已登记的医疗机构。",soon:"筹备中",
+sTitle:"住宿",hotel:"伽倻王国主题酒店",hotelDesc:"以古代伽倻王国为主题的金海酒店。",rooms:"客房",roomsV:"37间",area:"地点",areaV:"韩国 庆尚南道 金海市",tel:"咨询",book:"查看空房",
+cTitle:"合作医疗机构",cBody:"登记完成后公开。仅刊登已登记为外国患者招揽医疗机构的机构，并附登记编号。",
+biz:"运营：株式会社昌大韩（주식회사 창대한）／代表 배용준",addr:"韩国 釜山广域市 海云台区",reg:"外国患者招揽业者登记：筹备中"},
+ko:{h1:"부산·김해에서 천천히 머무는 여행",lead:"김해의 작은 테마호텔에 머물며 부산의 도시와 바다로. 숙박과 관광을 안내합니다.",cta:"숙소 보기",
+notice:"의료기관 안내·예약은 외국인환자 유치업자 등록을 마친 뒤 시작합니다. 지금은 숙박과 관광만 이용할 수 있습니다.",
+jTitle:"여행 흐름",j1:"김해공항 도착",j1s:"부산의 하늘 관문에서 여행이 시작됩니다.",j2:"호텔 체크인",j2s:"김해의 테마호텔에서 편히 쉽니다.",j3:"부산의 도시와 바다로",j3s:"해운대, 전통시장, 가야의 역사를 둘러봅니다.",j4:"병원 예약·통역",j4s:"등록 후, 등록된 의료기관만 안내합니다.",soon:"준비 중",
+sTitle:"머무는 곳",hotel:"가야왕국 테마호텔",hotelDesc:"고대 가야 이야기를 주제로 한 김해의 호텔입니다.",rooms:"객실",roomsV:"37실",area:"위치",areaV:"경상남도 김해시",tel:"문의",book:"빈방 보기",
+cTitle:"제휴 의료기관",cBody:"등록을 마친 뒤 공개합니다. 외국인환자 유치의료기관으로 등록된 곳만 등록번호와 함께 싣습니다.",
+biz:"운영: 주식회사 창대한 · 대표 배용준",addr:"부산광역시 해운대구",reg:"외국인환자 유치업자 등록: 준비 중"}
+};
+function setLang(l){
+  if(!T[l]) l="ja";
+  document.documentElement.setAttribute("lang", l==="zh"?"zh":l);
+  var d=T[l];
+  document.querySelectorAll("[data-t]").forEach(function(el){var k=el.getAttribute("data-t");if(d[k]!=null)el.textContent=d[k];});
+  document.querySelectorAll(".langs button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l));});
+  document.title="K-BEAUTY STAY｜"+d.h1.replace(/\n/g,"");
+  try{localStorage.setItem("kbs-lang",l)}catch(e){}
+}
+document.querySelectorAll(".langs button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-l"))})});
+var saved=null;try{saved=localStorage.getItem("kbs-lang")}catch(e){}
+var nav=(navigator.language||"ja").slice(0,2);
+setLang(saved||({ja:"ja",en:"en",zh:"zh",ko:"ko"})[nav]||"ja");
+</script>
+</body>
+</html>
